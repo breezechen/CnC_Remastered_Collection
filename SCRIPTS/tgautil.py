@@ -40,10 +40,10 @@ def crop(tga_file):
         alpha = image.split()[-1]
         left, top, right, bottom = 0, 0, image.width, image.height
         found_left, found_top, found_right, found_bottom = False, False, False, False
-        for y in range(0, image.height):
+        for y in range(image.height):
             if found_top and found_bottom:
                 break
-            for x in range(0, image.width):
+            for x in range(image.width):
                 if found_top and found_bottom:
                     break
                 if not found_top and alpha.getpixel((x, y)) != 0:
@@ -52,7 +52,7 @@ def crop(tga_file):
                 if not found_bottom and alpha.getpixel((x, image.height - y - 1)) != 0:
                     bottom = image.height - y
                     found_bottom = True
-        for x in range(0, image.width):
+        for x in range(image.width):
             if found_left and found_right:
                 break
             for y in range(top, bottom):
